@@ -5,7 +5,7 @@ import { getProducts } from "../../store/slices/products.slice"
 export const HomeScreen = () => {
   const dispatch = useDispatch()
   useEffect(()=> {
-    dispatch(getProducts("https://ecommerce-api-react.herokuapp.com/api/v1/products"))
+    // dispatch(getProducts("https://ecommerce-api-react.herokuapp.com/api/v1/products"))
   }, [])
 
   return (
