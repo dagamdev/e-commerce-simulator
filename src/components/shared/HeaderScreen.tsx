@@ -1,15 +1,25 @@
 import "./headerScreen.css"
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 
 export const HeaderScreen = ()=> {
-  function navBar(event: object){
+  const navigate = useNavigate()
+  function navBar(){
     document.querySelector(".navbar")?.classList.toggle("navbar_open")
+  }
+
+  document.addEventListener("scroll", ()=>{
+    document.querySelector(".header")?.classList.toggle("header-scroll", window.scrollY > 80)
+  })
+
+  function clickHome(){
+    navigate("/")
   }
 
   return (
     <header className="header">
-      <h1 className='header_title'>e-commerce</h1>
+      <h1 className='header_title' onClick={clickHome}>e-commerce</h1>
       <i className='bx bx-menu' onClick={navBar}></i>
       <nav className="navbar">
         <i className='bx bx-x navbar_close' onClick={navBar}></i>

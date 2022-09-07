@@ -1,0 +1,252 @@
+.product{
+  padding: 20px;
+}
+
+.product_history{
+  display: flex;
+  column-gap: 7px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.product_history-home{
+  color: var(--Text-Color);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.product_history-separator{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--Primari-Color);
+}
+
+.product_history-name{
+  font-size: 13px;
+}
+
+
+.product_info{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-direction: column;
+}
+
+.product_images{
+  width: min(539px, 100%);
+}
+
+.product_images-gallery{
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product_images-div{
+  height: 100%;
+  display: flex;
+  position: absolute;
+  align-items: center;
+}
+
+.product_images-div:nth-child(1){
+  left: 2px;
+}
+
+.product_images-div:nth-child(2){
+  right: 2px;
+}
+
+.gallery-btn{
+  width: 46px;
+  color: #ffffff;
+  height: 46px;
+  border: none;
+  cursor: pointer;
+  z-index: 4;
+  display: none;
+  font-size: 30px;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  background-color: var(--Primari-Color);
+  box-shadow: -2px 3px 6px #969696;
+}
+
+.btn-active{
+  display: flex;
+}
+
+.images_list{
+  width: 300%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.5s;
+  align-items: center;
+}
+
+.images_list-img{
+  width: 100%;
+  height: 100%;
+  padding: 20px 54px;
+}
+
+.images_list-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.images_preview{
+  display: none;
+}
+
+
+.product_details{
+  display: flex;
+  row-gap: 16px;
+  max-width: 500px;
+  flex-direction: column;
+}
+
+.product_details-title, .product_details-description{
+  color: var(--Text-Color);
+}
+
+.product_details-description{
+  font-size: 15px;
+}
+
+.product_details-status{
+  display: flex;
+}
+
+.product_details-status p{
+  color: #afafaf;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.product_details-price{
+  width: 50%;
+}
+
+.product_details-price span{
+  font-weight: 600;
+}
+
+.details_quantity-buttons{
+  display: flex;
+}
+
+.details_quantity-buttons button {
+  color:  var(--Text-Color);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: 1px solid #a3a3a3;
+}
+
+.details_quantity-value{
+  color:  var(--Text-Color);
+  width: 40px;
+  height: 30px;
+  padding: 5px 15px;
+  display: block;
+  border-top: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+}
+
+.details_quantity-value span{
+  font-size: 15px;
+  text-align: center;
+}
+
+.product_details-btn{
+  color: #eeeeee;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 4px;
+  box-shadow: 7px -7px 14px #ffffff,
+  -7px 7px 14px #b4b4b4;
+  background-color: var(--Primari-Color);
+  transition: transform 0.2s;
+}
+
+.product_details-btn:hover{
+  transform: scale(0.98);
+}
+
+.product_suggestions{
+  margin-bottom: 40px;
+}
+
+.product_suggestions-title{
+  color: var(--Primari-Color);
+  font-size: 20px;
+}
+
+.product_suggestion-elements{
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+
+@media screen and (min-width: 760px){
+  .product_info{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .product_images{
+    width: 50%;
+    padding: 10px;
+    transition: box-shadow 0.4s;
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+  
+  .product_images:hover{
+    box-shadow: -2px 4px 10px #969696;
+  }
+
+  .product_details{
+    width: 50%;
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 1000px){
+  .images_preview{
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+  }
+
+  .images_preview-img{
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+  }
+  
+  .preview-img-selected{
+    border: 2px solid var(--Primari-Color);
+  }
+
+  .images_preview-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

@@ -2,7 +2,10 @@ body{
   background-color: var(--Background-Color);
 }
 
-.login{
-  padding: 14px;
-  margin-top: 65px;
+.App{
+  display: flex;
+  position: relative;
+  min-height: 100%;
+  justify-content: space-between;
+  flex-direction: column;
 }

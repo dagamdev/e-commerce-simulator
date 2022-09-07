@@ -2,6 +2,11 @@
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   --Primari-Color: #f85555;
   --Border-Color: #9996;
+  --Footer-Color: #3c3c3b;
+  --Network-Color: #50504f;
+  --Background-Color: #eeeeee;
+  --Text-Color: #515151;
+  --Gray: #b8b8b8; 
 }
 
 * {
@@ -14,6 +19,8 @@ html {
 
 body {
   margin: 0;
+  height: 100vh;
+  padding-top: 60px;
 }
 
 h1, h2, h3, h4, p, ul {
@@ -29,4 +36,8 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+#root{
+  height: 100%;
 }

@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
 import products from "./slices/products.slice"
+import loading from "./slices/loading.slice"
 
-export default configureStore({
+export const store = configureStore({
   reducer:{
-    products
+    products,
+    loading
   }
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
