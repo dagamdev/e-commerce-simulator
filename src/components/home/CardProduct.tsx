@@ -11,7 +11,7 @@ export const CardProduct = ({product}: {product: Product})=> {
 
   const obtaining = localStorage.getItem("e-commerce") || ""
   const data = obtaining ? JSON.parse(obtaining) : false
-  const token = data.user.token
+  const token = data ? data.user.token : false
 
   function productSelect({target}: MouseEvent<HTMLElement>){
     if(button.current && button.current!=target && button.current.childNodes[0]!=target){
@@ -21,15 +21,17 @@ export const CardProduct = ({product}: {product: Product})=> {
   }
 
   function addToCart(){
-    fetch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
-      method: 'POST',
-      body: JSON.stringify({id: 2, quantity: 1}),
-      headers:{
-        Authorization: `Bearer ${token}`
+    if(data){
+      fetch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
+        method: 'POST',
+        body: JSON.stringify({id: 2, quantity: 1}),
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
       }
+        // getConfigPost({id: 1, quantity: 1}, token)
+        ).then(prom=> prom.json()).then(res=> console.log(res)).catch(err=> console.error(err))
     }
-      // getConfigPost({id: 1, quantity: 1}, token)
-      ).then(prom=> prom.json()).then(res=> console.log(res)).catch(err=> console.error(err))
   }
   
   return (

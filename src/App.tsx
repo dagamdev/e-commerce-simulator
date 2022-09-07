@@ -15,7 +15,7 @@ type CloseInput = (doc: Element|ChildNode|null) => boolean
 
 
 function App() {
-  const obtaining = localStorage.getItem("e-commerce") || ""
+  const obtaining = localStorage.getItem("e-commerce") || false
   const data = obtaining ? JSON.parse(obtaining) : false
   // useEffect(()=>{
   //   fetch("https://ecommerce-api-react.herokuapp.com/api/v1/users", {
@@ -59,7 +59,7 @@ function App() {
         <Route path='/' element={<HomeScreen />} />
         <Route path='/login' element={<LoginScreen />} />
 
-        <Route element={<ProtectedRoutes isLogged={data ? Boolean(data.user.token) : false} />} >
+        <Route element={<ProtectedRoutes isLogged={data ? Boolean(data.user.token) : data} />} >
           <Route path='/cart' element={<CartScreen />} />
           <Route path='/purchases' element={<PurchasesScreen />} />
         </Route>

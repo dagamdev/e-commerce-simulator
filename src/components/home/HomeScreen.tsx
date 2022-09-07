@@ -26,7 +26,7 @@ export const HomeScreen = () => {
     dispatch(getProducts())
   }, [])
 
-  console.log(productsFilter)
+  // console.log(productsFilter)
 
   return (
     <div className="home">
