@@ -10,6 +10,7 @@ import { PurchasesScreen } from './components/purchases/PurchasesScreen'
 import { HeaderScreen } from './components/shared/HeaderScreen'
 import { FooterScreen } from './components/shared/FooterScreen'
 import { ProductScreen } from './components/product/ProductScreen'
+import { UserScreen } from "./components/user/UserScreen"
 
 type CloseInput = (doc: Element|ChildNode|null) => boolean
 
@@ -62,6 +63,7 @@ function App() {
         <Route element={<ProtectedRoutes isLogged={data ? Boolean(data.user.token) : data} />} >
           <Route path='/cart' element={<CartScreen />} />
           <Route path='/purchases' element={<PurchasesScreen />} />
+          <Route path='/user' element={<UserScreen />} />
         </Route>
 
         <Route path='/product'>

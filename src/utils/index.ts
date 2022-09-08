@@ -1,7 +1,5 @@
-export const getConfigPost = (body: any ,token: string) => ({
-  method: 'POST',
-  body: JSON.stringify(body),
-  headers:{
+export const getConfig = (token: string) => ({
+  headers: {
     Authorization: `Bearer ${token}`
   }
 })

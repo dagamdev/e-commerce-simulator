@@ -20,6 +20,38 @@ export type Product = {
   productImgs: string[]
 }
 
+export type ProductCart = {
+  brand: string
+  categoryId: number
+  description: string 
+  id: number
+  price: string
+  productsInCart: { 
+    cartId: number
+    id: number
+    productId: number
+    quantity: number
+    status: string
+  }
+  quantity: number
+  status: string
+  title: string
+  userId: number
+}
+
+export type Purchase = {
+  cart: { 
+    id: number
+    products: ProductCart[]
+    status: string
+    userId: number
+  }
+  cartId: number
+  createdAt: string
+  id: number
+  updatedAt: string
+  userId: number
+}
 
 export type Suggestion = {
   id: number

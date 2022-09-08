@@ -112,14 +112,18 @@
 
   .navbar_item-text{
     display: flex;
-    transform: translateX(40%);
+    transform: translateX(38%);
     column-gap: 6px;
     transition: transform 0.5s;
   }
-  
+
   .navbar_link p{
     opacity: 0;
     transition: opacity 0.5s;
+  }
+
+  .navbar_item-text i{
+    font-size: 20px;
   }
 
   .navbar_item:hover .navbar_item-text p{

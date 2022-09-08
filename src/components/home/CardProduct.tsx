@@ -1,7 +1,8 @@
 import React, {MouseEvent, useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Product } from '../../types'
-import { getConfigPost } from '../../utils'
+import { getConfig } from '../../utils'
+import axios from "axios"
 
 
 export const CardProduct = ({product}: {product: Product})=> {
@@ -22,15 +23,12 @@ export const CardProduct = ({product}: {product: Product})=> {
 
   function addToCart(){
     if(data){
-      fetch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
-        method: 'POST',
-        body: JSON.stringify({id: 2, quantity: 1}),
-        headers:{
-          Authorization: `Bearer ${token}`
-        }
-      }
-        // getConfigPost({id: 1, quantity: 1}, token)
-        ).then(prom=> prom.json()).then(res=> console.log(res)).catch(err=> console.error(err))
+      axios.post("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
+          "id": product.id, 
+          "quantity": 1
+        },
+        getConfig(token)
+      ).then(res=> console.log(res)).catch(err=> console.error(err))
     }
   }
   

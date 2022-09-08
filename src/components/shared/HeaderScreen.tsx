@@ -1,10 +1,13 @@
 import "./headerScreen.css"
-import React from 'react'
+import React, {useRef} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
 
 export const HeaderScreen = ()=> {
   const navigate = useNavigate()
+  const obtaining = localStorage.getItem("e-commerce") || false
+  const token = obtaining ? JSON.parse(obtaining).user.token ? true : false : false
+
   function navBar(){
     document.querySelector(".navbar")?.classList.toggle("navbar_open")
   }
@@ -25,10 +28,10 @@ export const HeaderScreen = ()=> {
         <i className='bx bx-x navbar_close' onClick={navBar}></i>
         <ul className="navbar_list">
           <li className="navbar_item">
-            <NavLink to={"/login"} className={({isActive})=> isActive ? "navbar_link navbar_link-active" : "navbar_link"}>
+            <NavLink to={token ? "/user" : "/login"} className={({isActive})=> isActive ? "navbar_link navbar_link-active" : "navbar_link"}>
               <div className="navbar_item-text">
-                <i className='bx bx-user'></i>
-                <p>Login</p>
+                <i className={`bx ${token ? "bx-user" : "bx-log-in"}`}></i>
+                <p>{token ? "User" : "Login"}</p>
               </div>
             </NavLink>
           </li>

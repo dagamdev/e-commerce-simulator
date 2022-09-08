@@ -40,7 +40,7 @@ export const LoginForm = ()=> {
         }
       }).then(prom=> prom.json()).then(res=> {
         console.log(res)
-        localStorage.setItem("e-commerce", JSON.stringify({user: {token: res.data.token, img: ""}}))
+        localStorage.setItem("e-commerce", JSON.stringify({user: {token: res.data.token, firstName: res.data.user.firstName, lastName: res.data.user.lastName, img: ""}}))
       }).catch(err=> console.error(err))
     }
   }

@@ -1,0 +1,36 @@
+.user{
+  top: -61px;
+  height: 100vh;
+  display: flex;
+  padding: 20px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_info{
+  width: min(400px, 100%);
+  padding: 20px;
+  display: flex;
+  row-gap: 25px;
+  background: #ffffff;
+  box-shadow:  -15px 15px 30px #cacaca,
+  15px -15px 30px #ffffff;
+  align-items: center;
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.user_info-img{
+  width: 100px;
+  border-radius: 50%;
+}
+
+.user_info-name{
+  font-weight: 600;
+}
+
+.user_info-logout{
+  color: rgb(38, 38, 255);
+  cursor: pointer;
+}
