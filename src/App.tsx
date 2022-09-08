@@ -18,23 +18,6 @@ type CloseInput = (doc: Element|ChildNode|null) => boolean
 function App() {
   const obtaining = localStorage.getItem("e-commerce") || false
   const data = obtaining ? JSON.parse(obtaining) : false
-  // useEffect(()=>{
-  //   fetch("https://ecommerce-api-react.herokuapp.com/api/v1/users", {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       firstName: "David",
-  //       lastName: "Garcia",
-  //       email: "davidgarcia@gmail.com",
-  //       password: "24681012",
-  //       phone: "9994567891",
-  //       role: "admin"
-  //     }), 
-  //     headers:{
-  //       'Content-Type': 'application/json'
-  //     }
-  //   }).then(prom=> prom.json()).then(res=> console.log(res))
-  //   .catch(err=> console.log(err))
-  // }, [])
 
   function closeInput({target}: MouseEvent<HTMLElement>){
     const searchProduct = document.querySelector(".search-active")
@@ -60,7 +43,7 @@ function App() {
         <Route path='/' element={<HomeScreen />} />
         <Route path='/login' element={<LoginScreen />} />
 
-        <Route element={<ProtectedRoutes isLogged={data ? Boolean(data.user.token) : data} />} >
+        <Route element={<ProtectedRoutes isLogged={data ? true : data} />} >
           <Route path='/cart' element={<CartScreen />} />
           <Route path='/purchases' element={<PurchasesScreen />} />
           <Route path='/user' element={<UserScreen />} />
