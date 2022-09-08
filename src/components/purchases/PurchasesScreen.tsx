@@ -20,7 +20,7 @@ export const PurchasesScreen = ()=> {
     }).then(prom=> prom.json()).then(res=> setPurchases(res.data.purchases)).catch(err=> err)
   }, [])
 
-  console.log(purchases)
+  // console.log(purchases)
 
   return (
     <section className="purchases">

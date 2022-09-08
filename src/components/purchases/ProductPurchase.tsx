@@ -3,9 +3,6 @@ import { ProductCart } from '../../types'
 
 export const ProductPurchase = ({product}: {product: ProductCart})=> {
 
-  console.log(product)
-
-
   return (
     <li className='purchase_element'>
       <p className="purchase_element-title">{product.title}</p>

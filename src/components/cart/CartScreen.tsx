@@ -45,7 +45,7 @@ export const CartScreen = ()=> {
     }).catch(err=> err)
   }
 
-  console.log(productsCr)
+  // console.log(productsCr)
 
   return (
     <section className="cart">

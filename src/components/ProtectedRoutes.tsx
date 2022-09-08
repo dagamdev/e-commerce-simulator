@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 
 export const ProtectedRoutes = ({isLogged}: {isLogged: boolean})=> {
+  console.log(isLogged)
   return (
     <>
       {isLogged ? <Outlet /> : <Navigate to={"/login"} />}
