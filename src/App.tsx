@@ -16,8 +16,6 @@ type CloseInput = (doc: Element|ChildNode|null) => boolean
 
 
 function App() {
-  const obtaining = localStorage.getItem("e-commerce") || false
-  const data = obtaining ? JSON.parse(obtaining) : false
 
   function closeInput({target}: MouseEvent<HTMLElement>){
     const searchProduct = document.querySelector(".search-active")
@@ -43,7 +41,7 @@ function App() {
         <Route path='/' element={<HomeScreen />} />
         <Route path='/login' element={<LoginScreen />} />
 
-        <Route element={<ProtectedRoutes isLogged={data ? true : data} />} >
+        <Route element={<ProtectedRoutes />} >
           <Route path='/cart' element={<CartScreen />} />
           <Route path='/purchases' element={<PurchasesScreen />} />
           <Route path='/user' element={<UserScreen />} />

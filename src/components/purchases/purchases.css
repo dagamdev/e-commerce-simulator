@@ -24,17 +24,25 @@
 }
 
 .purchase_element{
+  cursor: pointer;
   display: flex;
   padding: 20px;
   border-bottom: 1px solid var(--Border-Color);
+  background-color: #ffffff;
 }
 
 .purchase_element:last-child{
   border: none;
 }
 
+.purchase_element-img{
+  width: 20%;
+  height: 100px;
+  object-fit: contain;
+}
+
 .purchase_element-title{
-  width: 60%;
+  width: 40%;
 }
 
 .purchase_element-quantity{

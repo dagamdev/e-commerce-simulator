@@ -1,6 +1,5 @@
 .user{
-  top: -61px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   display: flex;
   padding: 20px;
   position: relative;
@@ -10,7 +9,7 @@
 
 .user_info{
   width: min(400px, 100%);
-  padding: 20px;
+  padding: 40px 20px;
   display: flex;
   row-gap: 25px;
   background: #ffffff;

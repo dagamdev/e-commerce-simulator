@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent, useRef } from 'react'
+import React, { useState, FormEvent } from 'react'
+import {useNavigate} from "react-router-dom"
 
 type FormValues = {
   email?: string
@@ -6,10 +7,6 @@ type FormValues = {
   password?: string
   lastName?: string
   firstName?: string
-}
-
-type InputElementType = {
-
 }
 
 const initialFormValues = {
@@ -21,6 +18,7 @@ const initialFormValues = {
 }
 
 export const LoginForm = ()=> {
+  const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState(true)
   const [formElements, setFormElements] = useState<FormValues>(initialFormValues)
 
@@ -39,13 +37,11 @@ export const LoginForm = ()=> {
           'Content-Type': 'application/json'
         }
       }).then(prom=> prom.json()).then(res=> {
-        console.log(res)
         localStorage.setItem("e-commerce", JSON.stringify({user: {token: res.data.token, firstName: res.data.user.firstName, lastName: res.data.user.lastName, img: ""}}))
+        navigate("/user")
       }).catch(err=> console.error(err))
     }
   }
-  
-
   
   // console.log(formElements)
 

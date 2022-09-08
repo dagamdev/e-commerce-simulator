@@ -324,15 +324,11 @@
   display: flex;
   font-size: 22px;
   transition: transform 0.1s;
-  box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.600);
+  box-shadow: -2px 3px 6px hsla(0, 0%, 61%, 0.6);
   align-items: center;
   border-radius: 50%;
   background-color: var(--Primari-Color);
   justify-content: center;
-}
-
-.card-home_btn:hover{
-  transform: scale(0.94);
 }
 
 
@@ -350,6 +346,25 @@
     display: block;
   }
 
+  .price_filter-btn{
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    box-shadow: 6px -6px 12px #ffffff,
+    -6px 6px 12px #c7c7c7;
+  }
+
+  .price_filter-btn:hover{
+    box-shadow: none;
+  }
+
+  .category_filter-element{
+    cursor: pointer;
+  }
+
+  .category_filter-element:hover{
+    color: #252525;
+  }
+
 
   /* Card */
   .card-home:hover{
@@ -358,6 +373,15 @@
     box-shadow: 6px -6px 12px #ffffff,
     -4px 6px 12px #858585;
     transform: scale(1.06);
+  }
+
+  /* .card-home_btn{
+    transition: ;
+  } */
+
+  .card-home_btn:hover{
+    
+    transform: scale(0.94);
   }
 }
 

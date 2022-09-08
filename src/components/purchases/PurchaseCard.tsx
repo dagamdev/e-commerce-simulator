@@ -1,11 +1,11 @@
 import React from 'react'
-import { Purchase } from '../../types'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import { Product, Purchase } from '../../types'
 import { ProductPurchase } from './ProductPurchase'
 
 export const PurchaseCard = ({purchase}: {purchase: Purchase})=> {
-
-  console.log(purchase)
-
+  const products: Product[] = useSelector((state: RootState)=> state.products)
   const title = new Date(purchase.createdAt).toLocaleString()
 
   return (
@@ -14,7 +14,7 @@ export const PurchaseCard = ({purchase}: {purchase: Purchase})=> {
         <p>{title}</p>
       </div>
       <ul className='purchase_card-products'>
-        {purchase.cart.products.map(m=> <ProductPurchase key={m.id} product={m} />)}
+        {purchase.cart.products.map(pro=> <ProductPurchase key={pro.id} product={pro} img={products?.find(f=> f.id==pro.id)?.productImgs[0]} />)}
       </ul>
     </article>
   )

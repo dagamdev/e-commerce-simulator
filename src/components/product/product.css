@@ -72,8 +72,9 @@
   align-items: center;
   border-radius: 50%;
   justify-content: center;
-  background-color: var(--Primari-Color);
   box-shadow: -2px 3px 6px #969696;
+  transition: box-shadow 0.4s;
+  background-color: var(--Primari-Color);
 }
 
 .btn-active{
@@ -175,11 +176,7 @@
   box-shadow: 7px -7px 14px #ffffff,
   -7px 7px 14px #b4b4b4;
   background-color: var(--Primari-Color);
-  transition: transform 0.2s;
-}
-
-.product_details-btn:hover{
-  transform: scale(0.98);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product_suggestions{
@@ -221,6 +218,15 @@
   .product_details{
     width: 50%;
     padding: 10px;
+  }
+
+  .product_details-btn:hover{
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+
+  .gallery-btn:active{
+    box-shadow: none;
   }
 }
 

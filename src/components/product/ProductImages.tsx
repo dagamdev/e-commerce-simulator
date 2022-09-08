@@ -1,4 +1,4 @@
-import React, {MouseEvent, useState, useRef, HtmlHTMLAttributes} from 'react'
+import React, {MouseEvent, useState, useRef} from 'react'
 import { Product } from '../../types'
 
 export const ProductImages = ({product}: {product: Product|undefined})=> {

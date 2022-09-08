@@ -1,11 +1,13 @@
 import React from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 
-export const ProtectedRoutes = ({isLogged}: {isLogged: boolean})=> {
-  // console.log(isLogged)
+export const ProtectedRoutes = ()=> {
+  const obtaining = localStorage.getItem("e-commerce") || false
+  const data = obtaining ? JSON.parse(obtaining) : false
+
   return (
     <>
-      {isLogged ? <Outlet /> : <Navigate to={"/login"} />}
+      {data.user.token ? <Outlet /> : <Navigate to={"/login"} />}
     </>
   )
 }
