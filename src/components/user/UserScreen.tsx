@@ -5,25 +5,26 @@ import { useNavigate } from "react-router-dom"
 import userImg from "../../imgs/user.png"
 import { FormImg } from "./FormImg"
 import { BiCamera } from 'react-icons/bi'
-
-const localData = localStorage.getItem('e-commerce')
+import { useDispatch } from "react-redux"
+import { getLocalData } from "../../utils"
+import { setCartAmount } from "../../store/slices/carts.slice"
 
 export const UserScreen = ()=> {
+  const localData = getLocalData()
   const navigate = useNavigate()
-  const obtaining = localStorage.getItem("e-commerce") || false
-  const user = obtaining ? JSON.parse(obtaining).user : false
   const [activeFrom, setActiveFrom] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
+  const dispatch = useDispatch()
 
   useEffect(()=> {
     if(localData){
-      const data = JSON.parse(localData)
-      if(data.user.img) setImageUrl(data.user.img)
+      if(localData.user.img) setImageUrl(localData.user.img)
     }
   }, [])
 
   function logOut(){
     localStorage.clear()
+    dispatch(setCartAmount(0))
     navigate("/login")
   }
 
@@ -41,7 +42,7 @@ export const UserScreen = ()=> {
             <BiCamera onClick={addImg} />
           </div>
         </div>
-        <p className='user_info-name'>{`${user.firstName} ${user.lastName}`}</p>
+        <p className='user_info-name'>{`${localData?.user?.firstName} ${localData?.user.lastName}`}</p>
         <span onClick={logOut} className='user_info-logout' >Log out</span>
       </div>
     </section>

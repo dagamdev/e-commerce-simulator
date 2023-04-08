@@ -1,7 +1,4 @@
-import {AnyAction, createSlice, PayloadAction, ThunkDispatch} from "@reduxjs/toolkit"
-import { ThunkAction } from "@reduxjs/toolkit"
-import { RootState } from ".."
-import { endPoint } from "../../utils/config"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Toast } from "../../types"
 
 export const toastsSlice = createSlice({
@@ -12,7 +9,8 @@ export const toastsSlice = createSlice({
       state.push(action.payload)
     },
     deleteToast: (state: Toast[], action: PayloadAction<string>) => {
-      state.splice(state.findIndex(t=> t.id == action.payload), 1)
+      const index = state.findIndex(f=> f.id == action.payload)
+      if(index >= 0) state.splice(index, 1)
     }
   }
 })

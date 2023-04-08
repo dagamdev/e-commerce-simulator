@@ -15,10 +15,9 @@ interface CartCardType {
   setProducts: Dispatch<SetStateAction<Purchase[]>>
 }
 
-const localData = getLocalData()
-const config = getConfig(localData?.user.token || '')
-
 export const CartCard = ({product, setTotal, setProducts}: CartCardType)=> {
+  const localData = getLocalData()
+  const config = getConfig(localData?.user.token || '')
   const dispatch = useDispatch()
   const [amount, setAmount] = useState(product.quantity)
   const { createNotification } = useToasts()

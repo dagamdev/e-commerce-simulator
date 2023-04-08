@@ -3,8 +3,6 @@ import { RootState } from ".."
 import { endPoint } from "../../utils/config"
 import { getConfig, getLocalData } from "../../utils"
 
-const LocalData = getLocalData()
-
 export const cartsSlice = createSlice({
   name: "carts",
   initialState: 0,
@@ -18,6 +16,7 @@ export const cartsSlice = createSlice({
 export const { setCartAmount, addCart, removeCart } = cartsSlice.actions
 export const getCartAmount = (): ThunkAction<void, RootState, unknown, AnyAction> => 
   async dispatch => {
+  const LocalData = getLocalData()
   if(LocalData){
     return fetch(endPoint+"cart", getConfig(LocalData.user.token))
       .then(prom=> prom.json())

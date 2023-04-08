@@ -7,9 +7,8 @@ import { endPoint } from "../../utils/config"
 import Loader from "../shared/loading/Locader"
 import { getLocalData } from "../../utils"
 
-const localData = getLocalData()
-
 export const PurchasesScreen = ()=> {
+  const localData = getLocalData()
   const [purchases, setPurchases] = useState<Purchase[]>([])
   const [loader, setLoader] = useState(true)
 

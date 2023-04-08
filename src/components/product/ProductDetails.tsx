@@ -8,9 +8,9 @@ import { useToasts } from '../../hooks/useToasts'
 import { useDispatch } from 'react-redux'
 import { addCart } from '../../store/slices/carts.slice'
 
-const localData = getLocalData()
 
 export const ProductDetails = ({product, amountProduct, setAmountProduct}: {product: Product, amountProduct: number, setAmountProduct: Dispatch<SetStateAction<number>>})=> {
+  const localData = getLocalData()
   const { createNotification } = useToasts()
   const dispatch = useDispatch()
 

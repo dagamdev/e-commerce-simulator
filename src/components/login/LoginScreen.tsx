@@ -6,9 +6,8 @@ import { NavLink } from "react-router-dom"
 import { BiLock, BiEnvelope, BiCopy, BiCheck } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 
-const localData = localStorage.getItem('e-commerce')
-
 export const LoginScreen = ()=> {
+  const localData = localStorage.getItem('e-commerce')
   const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState(false)
 

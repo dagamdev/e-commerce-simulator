@@ -5,9 +5,9 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { BiCheck } from 'react-icons/bi'
 import RegisterForm from './RegisterForm'
 
-const localData = localStorage.getItem('e-commerce')
 
 export default function RegisterScreen(){
+  const localData = localStorage.getItem('e-commerce')
   const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState(false)
 

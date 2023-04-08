@@ -10,9 +10,8 @@ import { addCart } from '../../store/slices/carts.slice'
 import { BiCartAdd } from 'react-icons/bi'
 import { useToasts } from '../../hooks/useToasts'
 
-const localData = getLocalData()
-
 export const CardProduct = ({product, setAmountProduct}: {product: Product, setAmountProduct?: Dispatch<SetStateAction<number>>})=> {
+  const localData = getLocalData()
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
   const {current} = useRef(product.id)

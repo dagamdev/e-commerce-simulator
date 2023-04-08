@@ -12,9 +12,8 @@ import { AppDispatch } from "../../store"
 import { useDispatch } from "react-redux"
 import { removeCart } from "../../store/slices/carts.slice"
 
-const localData = getLocalData()
-
 export const CartScreen = ()=> {
+  const localData = getLocalData()
   const [productsCr, setProductsCr] = useState<Purchase[]>([])
   const [total, setTotal] = useState(0)
   const [loader, setLoader] = useState(true)
@@ -22,16 +21,18 @@ export const CartScreen = ()=> {
   const dispatch: AppDispatch = useDispatch()
 
   useEffect(()=> {    
-    fetch(endPoint+"cart", {
-      method: 'GET',  
-      headers: {
-        Authorization: `Bearer ${localData?.user.token}`
-      }
-    }).then(prom=> prom.json()).then((res: Purchase[])=> {
-      setProductsCr(res.reverse())
-      setLoader(false)
-      if(res.length) setTotal(res.reduce((acc, pr)=> acc += (parseInt(pr.product.price)*pr.quantity), 0))
-    }).catch(err=> err)
+    if(localData){
+      fetch(endPoint+"cart", {
+        method: 'GET',  
+        headers: {
+          Authorization: `Bearer ${localData?.user.token}`
+        }
+      }).then(prom=> prom.json()).then((res: Purchase[])=> {
+        setProductsCr(res.reverse())
+        setLoader(false)
+        if(res.length) setTotal(res.reduce((acc, pr)=> acc += (parseInt(pr.product.price)*pr.quantity), 0))
+      }).catch(err=> err)
+    }
   }, [])
 
   function checkout(){
