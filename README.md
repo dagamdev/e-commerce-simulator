@@ -1,17 +1,11 @@
 # [📝 E-commerce](https://dg-e-commerce.netlify.app/)
 
-Aplicación web simlador de un e-commerce
-
-## ℹ️ Información:
-
-Aplicación web de tareas con todas las funciones de un **CRUD** *(Create, Read, Update, Delete)*, creada en **[NextJs](https://nextjs.org/)** Framework de **[ReactJs](https://reactjs.org/)**, **[TypeScript](https://www.typescriptlang.org/)** como lenguaje de programación y **CSS** para los estilos. 
-Desplegado en [Vercel](https://vercel.com/)
-El back-end creado tambien por mi, para más detalles puedes ver el [repositorio](https://github.com/2DavidGarcia4/Tasks-api-ExpressJs) 
-
+Aplicación web simulador de un **e-commerce** muestra todos los productos disponibles, puedes buscar un producto en concreto, filtrar productos por su precio o categoría, agregar y eliminar productos del carrito, comprar productos, ver los productos ya comprados, notificaciones de tipo tostada para acciones, animación de carga para algunas secciones, registro y acceso con autenticación.
 
 ## ✨ Características: 
 
-- NextJs
 - ReactJs
+- React router
+- Redux toolkit
 - TypeScript
 - CSS
