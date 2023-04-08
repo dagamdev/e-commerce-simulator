@@ -59,15 +59,18 @@ export const CartScreen = ()=> {
         <Loader /> :
         (productsCr.length>0 ? (
           <>
-            <div className="cart_products">
-              {productsCr?.map(m=> <CartCard key={m.id} product={m} setTotal={setTotal} setProducts={setProductsCr} />)}
-            </div>
-            <div className="cart_checkout">
-              <div className="cart_checkout-text">
-                <p>Total:</p>
-                <p>$ {total.toLocaleString()}</p>
+            <h2 className="cart-title">Products {productsCr.length}</h2>
+            <div className="cart-screen">
+              <div className="cart_products">
+                {productsCr?.map(m=> <CartCard key={m.id} product={m} setTotal={setTotal} setProducts={setProductsCr} />)}
               </div>
-              <button onClick={checkout} className="cart_checkout-btn">Checkout</button>
+              <div className="cart_checkout">
+                <div className="cart_checkout-text">
+                  <p>Total:</p>
+                  <p>$ {total.toLocaleString()}</p>
+                </div>
+                <button onClick={checkout} className="cart_checkout-btn">Checkout</button>
+              </div>
             </div>
           </>
           ) : <i>There are no products</i>

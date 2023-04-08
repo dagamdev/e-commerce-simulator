@@ -4,6 +4,8 @@
 }
 
 .purchases-title{
+  width: min(700px, 100%);
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 

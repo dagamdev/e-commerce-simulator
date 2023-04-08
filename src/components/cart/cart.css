@@ -1,8 +1,19 @@
 .cart{
   padding: 20px 20px 60px 20px;
-  display: flex;
   position: relative;
-  min-height: calc(100vh - 61px);
+  align-items: center;
+}
+
+.cart-title{
+  width: min(700px, 100%);
+  margin: 0 auto;
+  text-align: start;
+  margin-bottom: 20px;
+}
+
+.cart-screen{
+  min-height: calc(100vh - 168px);
+  display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;

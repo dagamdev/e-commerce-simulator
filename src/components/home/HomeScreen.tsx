@@ -5,13 +5,12 @@ import {useDispatch, useSelector} from "react-redux"
 import { RootState, AppDispatch } from "../../store"
 import { getProducts } from "../../store/slices/products.slice"
 import { CardProduct } from "./CardProduct"
-import { Filters, Product, Toast } from "../../types"
+import { Filters, Product } from "../../types"
 import { SearchProduct } from "./SearchProduct"
 import { PriceFilter } from "./PriceFilter"
 import { CategoryFilter } from "./CategoryFilter"
 import { BiX, BiFilter, BiChevronDown } from 'react-icons/bi'
 import Loader from "../shared/loading/Locader"
-import { useToasts } from "../../hooks/useToasts"
 
 export const HomeScreen = () => {
   const filtersRef = useRef<HTMLDListElement>(null)
@@ -19,7 +18,6 @@ export const HomeScreen = () => {
   const [filters, setFilters] = useState<Filters>({from: null, to: null, category: null})
   const products: Product[] = useSelector((state: RootState)=> state.products)
   const [loader, setLoader] = useState(true)
-  const { createNotification } = useToasts()
 
   let productsFilter = (filters.category || filters.from) ? products?.filter(({category, price})=> {
     const { category: categoryName, from, to } = filters
@@ -42,11 +40,7 @@ export const HomeScreen = () => {
 
   const openFilters = () => {
     document.querySelector(".home_filters")?.classList.add("home_filters-open")
-    const types: Toast['type'][] = ['success', 'info', 'warning', 'error']
-    createNotification({type: types[Math.floor(Math.random()*types.length)], content: 'Hello?', time: 10*60000})
   }
-
-  // console.log(productsFilter)
 
   return (
     <div className="home">

@@ -9,7 +9,7 @@ export const ProtectedRoutes = ()=> {
 
   useEffect(()=> {
     if(!localData?.user.token){
-      createNotification({type: 'info', content: `Tienes que iniciar sesión o registrarte para tener acceso`})
+      createNotification({type: 'info', content: `You have to login or register to have access`})
     }
   })
 
