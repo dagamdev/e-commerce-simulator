@@ -34,7 +34,7 @@ export const ProductScreen = ()=> {
           </>
         ) :
         <div>
-          <i>No existe el producto con la id {id}</i>
+          <i>The product with the id {id} does not exist</i>
         </div>
       }
     </section>
