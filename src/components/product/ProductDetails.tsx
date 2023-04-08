@@ -52,7 +52,8 @@ export const ProductDetails = ({product, amountProduct, setAmountProduct}: {prod
         }
       }).catch(e=> console.error(e))
 
-      
+    }else{
+      createNotification({type: 'error', content: 'Log in to add the product to the cart'})
     }
   }
 

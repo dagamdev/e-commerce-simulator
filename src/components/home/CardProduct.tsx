@@ -19,7 +19,6 @@ export const CardProduct = ({product, setAmountProduct}: {product: Product, setA
   const { createNotification } = useToasts()
 
   function productSelect({target}: MouseEvent<HTMLElement>){
-    console.log('producto')
     if(button.current && button.current!=target && button.current.childNodes[0]!=target){
       navigate("/product/"+current)
     }
