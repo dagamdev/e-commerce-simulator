@@ -1,5 +1,5 @@
 import "./footerScreen.css"
-import React from 'react'
+import { TfiLinkedin } from 'react-icons/tfi'
 
 export const FooterScreen = ()=> {
   return (
@@ -7,7 +7,7 @@ export const FooterScreen = ()=> {
       <p className="copyright">&copy; David Garcia</p>
       <div className="social_networks">
         <a className="social_network" href="https://www.linkedin.com/in/david-garcia-607a40240/" target={"_blank"}>
-          <i className='bx bxl-linkedin'></i>
+          <TfiLinkedin />
         </a>
       </div>
     </footer>

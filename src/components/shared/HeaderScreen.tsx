@@ -1,20 +1,31 @@
 import "./headerScreen.css"
-import React, {useRef} from 'react'
+
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
+import { AppDispatch, RootState } from "../../store"
+import { getCartAmount } from "../../store/slices/carts.slice"
+import { BiMenu, BiLogIn, BiUser, BiBox, BiCart, BiX } from 'react-icons/bi'
 
 export const HeaderScreen = ()=> {
+  const dispatch: AppDispatch = useDispatch()
+  const carts = useSelector((state: RootState) => state.carts)
   const navigate = useNavigate()
   const obtaining = localStorage.getItem("e-commerce") || false
   const token = obtaining ? JSON.parse(obtaining).user.token ? true : false : false
 
-  function navBar(){
+  useEffect(()=> {
+    dispatch(getCartAmount())
+    
+    document.addEventListener("scroll", ()=>{
+      document.querySelector(".header")?.classList.toggle("header-scroll", window.scrollY > 80)
+    })
+  })
+
+  function toggleShowNavbaar(){
     document.querySelector(".navbar")?.classList.toggle("navbar_open")
   }
-
-  document.addEventListener("scroll", ()=>{
-    document.querySelector(".header")?.classList.toggle("header-scroll", window.scrollY > 80)
-  })
 
   function clickHome(){
     navigate("/")
@@ -23,31 +34,43 @@ export const HeaderScreen = ()=> {
   return (
     <header className="header">
       <h1 className='header_title' onClick={clickHome}>e-commerce</h1>
-      <i className='bx bx-menu' onClick={navBar}></i>
+      <div onClick={toggleShowNavbaar} className="header_menu">
+        <BiMenu className="header_menu-icon" />
+        {Boolean(carts) && (
+          <div className="header_menu-carts">
+            {carts}
+          </div>
+        )}
+      </div>
       <nav className="navbar">
-        <i className='bx bx-x navbar_close' onClick={navBar}></i>
+        <BiX className='navbar_close' onClick={toggleShowNavbaar} />
         <ul className="navbar_list">
-          <li className="navbar_item">
+          <li className="navbar_item" onClick={toggleShowNavbaar}>
             <NavLink to={token ? "/user" : "/login"} className={({isActive})=> isActive ? "navbar_link navbar_link-active" : "navbar_link"}>
               <div className="navbar_item-text">
-                <i className={`bx ${token ? "bx-user" : "bx-log-in"}`}></i>
+                {token ? <BiUser /> : <BiLogIn />}
                 <p>{token ? "User" : "Login"}</p>
               </div>
             </NavLink>
           </li>
-          <li className="navbar_item">
+          <li className="navbar_item" onClick={toggleShowNavbaar}>
             <NavLink to={"/purchases"} className={({isActive})=> isActive ? "navbar_link navbar_link-active" : "navbar_link"}>
               <div className="navbar_item-text">
-                <i className='bx bx-box'></i>
+                <BiBox />
                 <p>Purchases</p>
               </div>
             </NavLink>
             </li>
-          <li className="navbar_item">
+          <li className="navbar_item" onClick={toggleShowNavbaar}>
             <NavLink to={"/cart"} className={({isActive})=> isActive ? "navbar_link navbar_link-active" : "navbar_link"}>
               <div className="navbar_item-text">
-                <i className='bx bx-cart'></i>
+                <BiCart />
                 <p>Cart</p>
+                {Boolean(carts) && (
+                  <div className="navbar_item-carts">
+                    {carts}
+                  </div>
+                )}
               </div>
             </NavLink>
           </li>

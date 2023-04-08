@@ -1,13 +1,13 @@
-import React from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
+import { getLocalData } from '../utils'
+
+const localData = getLocalData()
 
 export const ProtectedRoutes = ()=> {
-  const obtaining = localStorage.getItem("e-commerce") || false
-  const data = obtaining ? JSON.parse(obtaining) : false
 
   return (
     <>
-      {data.user.token ? <Outlet /> : <Navigate to={"/login"} />}
+      {localData?.user.token ? <Outlet /> : <Navigate to={"/login"} />}
     </>
   )
 }

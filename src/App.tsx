@@ -11,6 +11,8 @@ import { HeaderScreen } from './components/shared/HeaderScreen'
 import { FooterScreen } from './components/shared/FooterScreen'
 import { ProductScreen } from './components/product/ProductScreen'
 import { UserScreen } from "./components/user/UserScreen"
+import RegisterScreen from './components/register/RegisterScreen'
+import Toasts from './components/notifications/Toasts'
 
 type CloseInput = (doc: Element|ChildNode|null) => boolean
 
@@ -36,10 +38,12 @@ function App() {
 
   return (
     <div onClick={closeInput} className="App">
+      <Toasts />
       <HeaderScreen />
       <Routes>
         <Route path='/' element={<HomeScreen />} />
         <Route path='/login' element={<LoginScreen />} />
+        <Route path='/register' element={<RegisterScreen />} />
 
         <Route element={<ProtectedRoutes />} >
           <Route path='/cart' element={<CartScreen />} />

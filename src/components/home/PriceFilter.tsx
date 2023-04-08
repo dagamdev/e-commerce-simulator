@@ -13,7 +13,15 @@ export const PriceFilter = ({filters, setFilters, limits}: PriceFilterType)=> {
 
   function setFilterPrice(evetn: FormEvent){
     evetn.preventDefault()
-    if(fromInput.current && toInput.current) setFilters({from: parseInt(fromInput.current.value), to: parseInt(toInput.current.value), category: filters.category})
+    if(fromInput.current && toInput.current) {
+      setFilters({from: parseInt(fromInput.current.value), to: parseInt(toInput.current.value), category: filters.category})
+      fromInput.current.placeholder = fromInput.current.value
+      toInput.current.placeholder = toInput.current.value
+
+      fromInput.current.value = ''
+      toInput.current.value = ''
+
+    }
   }
 
   return (

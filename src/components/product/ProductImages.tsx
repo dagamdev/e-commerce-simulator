@@ -1,5 +1,6 @@
-import React, {MouseEvent, useState, useRef} from 'react'
+import { MouseEvent, useState, useRef } from 'react'
 import { Product } from '../../types'
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 
 export const ProductImages = ({product}: {product: Product|undefined})=> {
   const button1 = useRef<HTMLButtonElement|null>(null)
@@ -60,17 +61,17 @@ export const ProductImages = ({product}: {product: Product|undefined})=> {
     <div className="product_images">
       <div className="product_images-gallery">
         <div className="product_images-div">
-          <button onClick={previusImg} ref={button1} className='gallery-btn'><i className='bx bx-chevron-left'></i></button>
+          <button onClick={previusImg} ref={button1} className='gallery-btn'><BiChevronLeft /></button>
         </div>
         <div className="product_images-div">
-          <button onClick={nextImg} ref={button2} className='gallery-btn btn-active'><i className='bx bx-chevron-right'></i></button>
+          <button onClick={nextImg} ref={button2} className='gallery-btn btn-active'><BiChevronRight /></button>
         </div>
         <ul id='images_list' className='images_list'>
-          {product?.productImgs.map((m, i)=> <li className='images_list-img' key={m}><img src={m} alt={`Image-${i}`} /></li>)}
+          {product?.images.map((m, i)=> <li className='images_list-img' key={m.id}><img src={m.url} alt={`Image-${i}`} /></li>)}
         </ul>
       </div>
       <ul className="images_preview">
-        {product?.productImgs.map((m, i)=> <li onClick={selectPreviewImg} className={i==0 ? "images_preview-img preview-img-selected" : "images_preview-img"} data-id={i} key={m}><img src={m} alt={`Image-${i}`} /></li>)}
+        {product?.images.map((m, i)=> <li onClick={selectPreviewImg} className={i==0 ? "images_preview-img preview-img-selected" : "images_preview-img"} data-id={i} key={m.id}><img src={m.url} alt={`Image-${i}`} /></li>)}
       </ul>
     </div>
   )

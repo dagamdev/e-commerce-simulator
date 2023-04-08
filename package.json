@@ -1,7 +1,7 @@
 {
   "name": "entregable6",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0"
   },

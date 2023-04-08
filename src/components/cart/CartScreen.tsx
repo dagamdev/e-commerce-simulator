@@ -1,66 +1,76 @@
 import "./cart.css"
-import React, {useEffect, useState} from 'react'
-import { Product, ProductCart } from '../../types'
-import { getConfig } from '../../utils'
+
+import {useEffect, useState} from 'react'
+import { Purchase } from '../../types'
 import { CartCard } from './CartCard'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
 import axios from "axios"
+import { endPoint } from "../../utils/config"
+import Loader from "../shared/loading/Locader"
+import { useToasts } from "../../hooks/useToasts"
+import { getConfig, getLocalData } from "../../utils"
+import { AppDispatch } from "../../store"
+import { useDispatch } from "react-redux"
+import { removeCart } from "../../store/slices/carts.slice"
+
+const localData = getLocalData()
 
 export const CartScreen = ()=> {
-  const products: Product[] = useSelector((state: RootState)=> state.products)
-  const [productsCr, setProductsCr] = useState<ProductCart[]>([])
+  const [productsCr, setProductsCr] = useState<Purchase[]>([])
   const [total, setTotal] = useState(0)
-  const obtaining = localStorage.getItem("e-commerce") || ""
-  const data = obtaining ? JSON.parse(obtaining) : false
+  const [loader, setLoader] = useState(true)
+  const { createNotification } = useToasts()
+  const dispatch: AppDispatch = useDispatch()
 
-  useEffect(()=> {
-    setTotal(productsCr.reduce((acc, pr)=> acc += (parseInt(pr.price)*pr.productsInCart.quantity), 0))
-
-    fetch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
+  useEffect(()=> {    
+    fetch(endPoint+"cart", {
       method: 'GET',  
       headers: {
-        Authorization: `Bearer ${data.user.token}`
+        Authorization: `Bearer ${localData?.user.token}`
       }
-    }).then(prom=> prom.json()).then(res=> setProductsCr(res.data.cart.products)).catch(err=> err)
+    }).then(prom=> prom.json()).then((res: Purchase[])=> {
+      setProductsCr(res.reverse())
+      setLoader(false)
+      if(res.length) setTotal(res.reduce((acc, pr)=> acc += (parseInt(pr.product.price)*pr.quantity), 0))
+    }).catch(err=> err)
   }, [])
 
   function checkout(){
-    axios.post("https://ecommerce-api-react.herokuapp.com/api/v1/purchases", {
-      "street": "Green St. 1456",
-      "colony": "Academlo",
-      "zipCode": 12345,
-      "city": "CMX",
-      "references": "Some references"
-    },
-    getConfig(data.user.token)
-    ).then(res=> {
+    axios.post(endPoint+"purchases", {}, getConfig(localData?.user.token || '')).then(res=> {
       console.log(res)
-      fetch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
+
+      fetch(endPoint+"cart", {
         method: 'GET',  
         headers: {
-          Authorization: `Bearer ${data.user.token}`
+          Authorization: `Bearer ${localData?.user.token}`
         }
-      }).then(prom=> prom.json()).then(res=> setProductsCr(res.data.cart.products)).catch(err=> setProductsCr([]))
-    }).catch(err=> err)
+      }).then(prom=> prom.json()).then(()=> {
+        dispatch(removeCart())
+        setProductsCr([])
+        createNotification({type: 'success', content: 'Purchase completed'})
+      })
+    }).catch(err=> console.log(err))
   }
 
-  // console.log(productsCr)
 
   return (
     <section className="cart">
-      {productsCr.length>0 ? (
-        <>
-          {productsCr?.map(m=> <CartCard key={m.id} product={m} img={products.find(f=> f.id==m.id)?.productImgs[0]} setProducts={setProductsCr} />)}
-          <div className="cart_checkout">
-            <div className="cart_checkout-text">
-              <p>Total:</p>
-              <p>$ {total}</p>
+      {loader ?
+        <Loader /> :
+        (productsCr.length>0 ? (
+          <>
+            <div className="cart_products">
+              {productsCr?.map(m=> <CartCard key={m.id} product={m} setTotal={setTotal} setProducts={setProductsCr} />)}
             </div>
-            <button onClick={checkout} className="cart_checkout-btn">Checkout</button>
-          </div>
-        </>
-        ) : <p>There are no products</p>
+            <div className="cart_checkout">
+              <div className="cart_checkout-text">
+                <p>Total:</p>
+                <p>$ {total.toLocaleString()}</p>
+              </div>
+              <button onClick={checkout} className="cart_checkout-btn">Checkout</button>
+            </div>
+          </>
+          ) : <i>There are no products</i>
+        )
       }
     </section>
   )

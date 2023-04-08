@@ -21,32 +21,61 @@
   flex-direction: column;
 }
 
+/** Loged */
+.login-card-leged{
+  padding: 20px 0;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.login-card-leged-icon{
+  color: var(--Success-color);
+  font-size: 30px;
+}
+
 .login_test{
   padding: 10px;
   border-radius: 6px;
   background-color: #c4eaf5;
-  
 }
 
 .login_test-title{
-  color: #313131;
+  color: #3b3b3b;
   font-size: 17px;
   text-align: center;
-  font-weight: 500;
+  font-weight: bold;
   margin-bottom: 14px;
 }
 
-.login_test-element:nth-child(1){
-  margin-bottom: 10px;
+.login_test-elements{
+  width: min(280px, 100%);
+  margin: 0 auto;
 }
 
-.login_test-element .bx{
+.login_test-element{
+  padding: 6px 0;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.login_test-element-icon{
   font-size: 18px;
   margin-right: 4px;
 }
 
+.login_test-element-copy{
+  right: 0;
+  position: absolute;
+  font-size: 18px;
+}
 
-/* Form */
+
+/** Form */
 .login_form{
   display: flex;
   row-gap: 20px;
@@ -55,7 +84,14 @@
 
 .login_form-div{
   display: flex;
+  position: relative;
   flex-direction: column;
+}
+
+.login_form-icon{
+  right: 12px;
+  bottom: 8px;
+  position: absolute;
 }
 
 .login_form-div label{
@@ -63,23 +99,79 @@
 }
 
 .login_form-input{
-  padding: 8px 12px;
   border: 1px solid var(--Border-Color); 
+  outline: none;
+  padding: 8px 12px;
   border-radius: 4px;
   background-color: transparent;
+}
+
+.login_form-input:valid{
+  border-color: var(--Primari-Color);
+}
+
+.login_form-error{
+  color: #eb1515;
+  padding: 20px;
+  position: relative;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 6px;
+  background-color: #fd3a3a69;
+}
+
+.login_form-error-icon{
+  top: 16px;
+  right: 10px;
+  position: absolute;
+  font-size: 30px;
 }
 
 .login_form-btn{
   color: #ffffff;
   cursor: pointer;
   border: none;
-  height: 36px;
+  padding: 10px;
   transition: box-shadow 0.2s;
   border-radius: 4px;
+  font-size: 18px;
   background-color: var(--Primari-Color);
 }
 
 .login_form-btn:hover{
   box-shadow: inset -4px 4px 8px #d34848,
     inset 4px -4px 8px #ff6262;
+}
+
+.login-card-register{
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-card-register-link{
+  color: #0481f7;
+}
+
+.login-card-register-link:hover{
+  text-decoration: underline;
+}
+
+
+@media (min-width: 720px){
+  .login_test-element-copy{
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .login_test-element:hover .login_test-element-copy{
+    opacity: 1;
+  }
+
+  .login_form-icon{
+    cursor: pointer;
+  }
+
+  .login_form-error-icon{
+    cursor: pointer;
+  }
 }

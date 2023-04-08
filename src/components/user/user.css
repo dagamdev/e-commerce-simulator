@@ -7,6 +7,69 @@
   justify-content: center;
 }
 
+.set-img{
+  width: 100%;
+  height: 100vh;
+  z-index: 4;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+
+/* Form */
+.form-img{
+  width: min(400px, 100%);
+  padding: 60px 20px 20px 20px;
+  display: flex;
+  row-gap: 30px;
+  position: relative;
+  box-shadow: -1px 2px 6px #797979;
+  align-items: center;
+  border-radius: 8px;
+  flex-direction: column;
+  background-color: var(--Background-Color);
+}
+
+.form-close{
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  font-size: 30px;
+}
+
+.form-img input{
+  width: 100%;
+  border: 1px solid var(--Border-Color);
+  outline: none;
+  padding: 10px 16px;
+  font-size: 18px;
+  box-shadow: -1px 2px 4px #9e9e9e;
+  border-radius: 4px;
+}
+
+.from-btn{
+  width: 100%;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  box-shadow: -3px 4px 6px #525252;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 4px;
+  background-color: var(--Primari-Color);
+}
+
+.from-btn:hover{
+  transform: scale(0.99);
+  box-shadow: none;
+}
+
+
+/* User info */
 .user_info{
   width: min(400px, 100%);
   padding: 40px 20px;
@@ -21,15 +84,62 @@
 }
 
 .user_info-img{
-  width: 100px;
+  width: 120px;
+  position: relative;
+}
+
+.user_info-img img{
+  width: 100%;
   border-radius: 50%;
 }
 
+.user_info-camera{
+  right: 6px;
+  color: #f1f1f1;
+  width: 30px;
+  height: 30px;
+  bottom: 6px;
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  font-size: 18px;
+  box-shadow: 2px 2px 6px #2e2e2e, -2px -2px 6px #2e2e2e;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  background-color: #555555;
+}
+
 .user_info-name{
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .user_info-logout{
-  color: rgb(38, 38, 255);
+  color: #0e42ec;
   cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 720px) {
+  .user_info{
+    transition: box-shadow 0.4s;
+  }
+
+  .user_info:hover{
+    box-shadow: none;
+  }
+
+  .bx-camera{
+    transition: box-shadow 0.3s;
+  }
+
+  .bx-camera:hover{
+    box-shadow: none;
+  }
+
+  .form-close{
+    cursor: pointer;
+  }
 }

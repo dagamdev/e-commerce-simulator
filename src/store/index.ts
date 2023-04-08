@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
 import products from "./slices/products.slice"
-import loading from "./slices/loading.slice"
+import carts from "./slices/carts.slice"
+import toasts from './slices/toasts.slice'
 
 export const store = configureStore({
   reducer:{
     products,
-    loading
+    carts,
+    toasts
   }
 })
 

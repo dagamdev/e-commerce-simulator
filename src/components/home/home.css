@@ -1,13 +1,14 @@
 .home{
-  padding: 20px;
+  padding: 20px 20px 80px 20px;
   position: relative;
+  min-height: calc(100vh - 61px);
 }
 
 
 .home_filters{
   top: 0;
   left: -400px;
-  width: min(375px, 100%);
+  width: min(320px, 100%);
   height: 100%;
   z-index: 22;
   padding: 60px 20px 20px 20px;
@@ -32,6 +33,7 @@
   top: 20px;
   right: 20px;
   color: var(--Text-Color);
+  cursor: pointer;
   position: absolute;
   font-size: 26px;
 }
@@ -193,7 +195,7 @@
 }
 
 .search-active .home_container-suggestions{
-  height: 380px;
+  height: 360px;
   box-shadow: -2px 3px 6px rgba(2, 2, 2, 0.40);
   padding-top: 50px;
 }
@@ -251,14 +253,13 @@
   margin-right: auto;
 }
 
-
-
 .home_container-cards{
   gap: 30px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   max-width: 1200px;
+  min-height: 460px;
   justify-content: center;
 }
 
@@ -323,7 +324,7 @@
   cursor: pointer;
   display: flex;
   font-size: 22px;
-  transition: transform 0.1s;
+  transition: transform 0.1s, box-shadow 0.2s;
   box-shadow: -2px 3px 6px hsla(0, 0%, 61%, 0.6);
   align-items: center;
   border-radius: 50%;
@@ -375,12 +376,8 @@
     transform: scale(1.06);
   }
 
-  /* .card-home_btn{
-    transition: ;
-  } */
-
   .card-home_btn:hover{
-    
+    box-shadow: none;
     transform: scale(0.94);
   }
 }
@@ -404,8 +401,13 @@
   }
 
   .home_container{
-    padding: 30px 20px;
+    width: 100%;
+    padding: 30px 20px 60px 20px;
   } 
+
+  .home_filter-drop-title{
+    cursor: pointer;
+  }
 
   .home_container-filters{
     display: none;

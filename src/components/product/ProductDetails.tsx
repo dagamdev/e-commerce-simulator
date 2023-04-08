@@ -1,14 +1,18 @@
-import React, {useEffect, useRef, useState} from 'react'
-import { Product } from '../../types'
+import { Dispatch, SetStateAction } from 'react'
+import { Product, Purchase } from '../../types'
 import axios from "axios"
-import { getConfig } from '../../utils'
+import { getConfig, getLocalData } from '../../utils'
+import { endPoint } from '../../utils/config'
+import { BiCartAdd } from 'react-icons/bi'
+import { useToasts } from '../../hooks/useToasts'
+import { useDispatch } from 'react-redux'
+import { addCart } from '../../store/slices/carts.slice'
 
-export const ProductDetails = ({product}: {product: Product|undefined})=> {
-  const [amountProduct, setAmountProduct] = useState(1)
-  const obtaining = localStorage.getItem("e-commerce") || ""
-  const data = obtaining ? JSON.parse(obtaining) : false
-  
-  // console.log(amountProduct)
+const localData = getLocalData()
+
+export const ProductDetails = ({product, amountProduct, setAmountProduct}: {product: Product, amountProduct: number, setAmountProduct: Dispatch<SetStateAction<number>>})=> {
+  const { createNotification } = useToasts()
+  const dispatch = useDispatch()
 
   function addition(){
     if(amountProduct < 40) setAmountProduct(amountProduct+1)
@@ -19,15 +23,36 @@ export const ProductDetails = ({product}: {product: Product|undefined})=> {
   }
 
   function addToCart(){
-    if(data.user.token){
-      axios.post("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {
-          "id": product?.id, 
-          "quantity": amountProduct
-        },
-        getConfig(data.user.token)
-      ).then(res=> {
-        console.log(res)
-      }).catch(err=> console.error(err))
+    if(localData?.user.token){
+      const { user: { token } } = localData
+
+      axios.get(endPoint+'cart', getConfig(token)).then(({data: products}: {data: Purchase[]})=> {
+        const prodCart = products.find(c=> c.productId == product?.id)
+        if(prodCart){
+          axios.put(endPoint+"cart/"+prodCart.id, {
+              "quantity": prodCart.quantity+amountProduct
+            },
+            getConfig(token)
+          ).then(()=> {
+            setAmountProduct(1)
+            createNotification({type: 'success', content: `${amountProduct} more ${product.title} were added to the cart`})
+          }).catch(err=> console.error(err))
+        
+        }else{
+          axios.post(endPoint+"cart", {
+              "productId": product.id, 
+              "quantity": amountProduct
+            },
+            getConfig(token)
+          ).then(()=> {
+            dispatch(addCart())
+            setAmountProduct(1)
+            createNotification({type: 'success', content: `${amountProduct} ${product.title} were added to the cart`})
+          }).catch(err=> console.error(err))
+        }
+      }).catch(e=> console.error(e))
+
+      
     }
   }
 
@@ -51,7 +76,7 @@ export const ProductDetails = ({product}: {product: Product|undefined})=> {
           </div>
         </div>
       </div>
-      <button onClick={addToCart} className='product_details-btn'>Add to cart <i className='bx bx-cart-add'></i></button>
+      <button onClick={addToCart} className='product_details-btn'>Add to cart <BiCartAdd className='product_details-btn-icon' /></button>
     </div>
   )
 }

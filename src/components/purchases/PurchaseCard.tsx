@@ -1,11 +1,6 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
 import { Product, Purchase } from '../../types'
-import { ProductPurchase } from './ProductPurchase'
 
 export const PurchaseCard = ({purchase}: {purchase: Purchase})=> {
-  const products: Product[] = useSelector((state: RootState)=> state.products)
   const title = new Date(purchase.createdAt).toLocaleString()
 
   return (
@@ -13,9 +8,28 @@ export const PurchaseCard = ({purchase}: {purchase: Purchase})=> {
       <div className="purchase_card-title">
         <p>{title}</p>
       </div>
-      <ul className='purchase_card-products'>
-        {purchase.cart.products.map(pro=> <ProductPurchase key={pro.id} product={pro} img={products?.find(f=> f.id==pro.id)?.productImgs[0]} />)}
-      </ul>
+      <div className='purchase_card-product'>
+        <div className='purchase_card-product-imagen'>
+          <img className='purchase_card-product-img' src={purchase.product.images[0].url} alt={purchase.product.title} />
+        </div>
+        <div className='purchase_card-product-details'>
+          <div className='purchase_card-product-section one'>
+            <p className="purchase_element-title">{purchase.product.brand}</p>
+            <p className="purchase_element-content">{purchase.product.title}</p>
+          </div>
+
+          <div className='purchase_card-product-group'>
+            <div className='purchase_card-product-section'>
+              <p className='purchase_element-title'>Quantity</p>
+              <p className='purchase_element-content'>{purchase.quantity}</p>
+            </div>
+            <div className='purchase_card-product-section'>
+              <p className='purchase_element-title'>Total</p>
+              <p className='purchase_element-content'>$ {(parseInt(purchase.product.price) * purchase.quantity).toLocaleString()}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </article>
   )
 }

@@ -7,10 +7,15 @@
   --Background-Color: #eeeeee;
   --Text-Color: #515151;
   --Gray: #b8b8b8; 
+  --Success-color: #09D31E;
 }
 
 * {
   box-sizing: border-box;
+}
+
+*::selection{
+  background-color: #fd6d6d;
 }
 
 html {

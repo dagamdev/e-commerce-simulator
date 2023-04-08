@@ -1,54 +1,106 @@
 .purchases{
-  padding: 20px 50px;
+  padding: 20px 20px 60px 20px;
+  min-height: calc(100vh - 60px);
 }
 
 .purchases-title{
   margin-bottom: 20px;
 }
 
+.purchases-elements{
+  display: flex;
+  row-gap: 20px;
+  align-items: center;
+  flex-direction: column;
+}
+
 .purchase_card{
-  border: 1px solid var(--Border-Color);
+  width: min(700px, 100%);
+  overflow: hidden;
+  box-shadow: -2px 4px 8px #adadad;
   border-radius: 10px;
 }
 
 .purchase_card-title{
-  padding: 20px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: 600;
   border-bottom: 1px solid var(--Border-Color);
+  background-color: #dbd1cd;
 }
 
-.purchase_card-products{
-  display: flex;
-  flex-direction: column;
-}
-
-.purchase_element{
-  cursor: pointer;
+.purchase_card-product{
   display: flex;
   padding: 20px;
-  border-bottom: 1px solid var(--Border-Color);
+  justify-content: space-between;
   background-color: #ffffff;
 }
 
-.purchase_element:last-child{
-  border: none;
+.purchase_card-product-imagen{
+  width: 24%;
 }
 
-.purchase_element-img{
-  width: 20%;
+.purchase_card-product-img{
+  width: 100%;
   height: 100px;
   object-fit: contain;
 }
 
+.purchase_card-product-details{
+  width: 62%;
+  display: flex;
+  column-gap: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.purchase_card-product-section{
+  display: flex;
+  row-gap: 4px;
+  position: relative;
+  flex-direction: column;
+}
+
+.purchase_card-product-section.one::before{
+  content: '';
+  width: 100%;
+  position: absolute;
+  height: 1px;
+  bottom: -14px;
+  background-color: var(--Text-Color);
+}
+
+.purchase_card-product-group{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
 .purchase_element-title{
-  width: 40%;
+  color: var(--Text-Color);
 }
 
-.purchase_element-quantity{
-  width: 20%;
+.purchase_element-content{
+  font-weight: bold;
 }
 
-.purchase_element-price{
-  width: 20%;
+@media screen and (min-width: 600px){
+  .purchase_card-product{
+    column-gap: 20px;
+    justify-content: flex-start;  
+  }
+
+  .purchase_card-product-details{
+    width: auto;
+    column-gap: 30px;
+    flex-direction: row;
+  }
+
+  .purchase_card-product-section.one::before{
+    content: none;
+  }
+
+  .purchase_card-product-group{
+    column-gap: 30px;
+  }
 }

@@ -2,7 +2,7 @@ footer{
   width: 100%;
   color: #fff;
   height: 140px;
-  row-gap: 10px;
+  row-gap: 16px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -32,4 +32,17 @@ footer{
 
 .social_network .bx{
   font-size: 26px;
+}
+
+@media screen and (min-width: 600px) {
+  .social_network{
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform: translate(4px, -4px);
+    box-shadow: -4px 4px 6px #202020;
+  }
+
+  .social_network:hover{
+    transform: translate(0, 0);
+    box-shadow: none;
+  }
 }
