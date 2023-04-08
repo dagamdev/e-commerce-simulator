@@ -7,5 +7,6 @@ Aplicación web simulador de un **e-commerce** muestra todos los productos dispo
 - ReactJs
 - React router
 - Redux toolkit
+- Hooks
 - TypeScript
 - CSS
