@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import { Product, Purchase } from '../../types'
 
 export const PurchaseCard = ({purchase}: {purchase: Purchase})=> {
   const title = new Date(purchase.createdAt).toLocaleString()
+  const navigate = useNavigate()
 
   return (
     <article className='purchase_card'>
@@ -9,7 +11,7 @@ export const PurchaseCard = ({purchase}: {purchase: Purchase})=> {
         <p>{title}</p>
       </div>
       <div className='purchase_card-product'>
-        <div className='purchase_card-product-imagen'>
+        <div className='purchase_card-product-imagen' onClick={()=> navigate(`/product/${purchase.productId}`)} >
           <img className='purchase_card-product-img' src={purchase.product.images[0].url} alt={purchase.product.title} />
         </div>
         <div className='purchase_card-product-details'>

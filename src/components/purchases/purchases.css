@@ -96,6 +96,10 @@
     flex-direction: row;
   }
 
+  .purchase_card-product-img{
+    cursor: pointer;
+  }
+
   .purchase_card-product-section.one::before{
     content: none;
   }
